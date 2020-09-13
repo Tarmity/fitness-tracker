@@ -1,8 +1,12 @@
 const router = require("express").Router();
-const workout = require("../models/workout");
+const Workout = require("../models/workout.js");
+
+router.get("/exercise", (req, res) => {
+    res.sendFile(path.join(__dirname + "./../Views/exercise.html"));
+}) 
 
 router.post("/api/workout", ({ body }, res) => {
-    workout.create(body)
+    Workout.create(body)
     .then(dbworkout => {
         res.json(dbworkout);
     })
@@ -12,7 +16,7 @@ router.post("/api/workout", ({ body }, res) => {
 });
 
 router.post("/api/workout/bulk", ({ body }, res) => {
-    workout.insertMany(body)
+    Workout.insertMany(body)
     .then(dbworkout => {
         res.json(dbworkout);
     })
@@ -22,8 +26,7 @@ router.post("/api/workout/bulk", ({ body }, res) => {
 });
 
 router.get("/api/workout", (req, res) => {
-    workout.find({})
-    .sort({ date: -1 })
+    Workout.find({})
     .then(dbworkout => {
         res.json(dbworkout);
     })
