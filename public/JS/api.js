@@ -1,6 +1,4 @@
 
-
-
 const API = {
   async getLastWorkout() {
     let res;
@@ -45,5 +43,3 @@ const API = {
     return json;
   },
 };
-
-module.exports = API;
