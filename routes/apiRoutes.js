@@ -5,27 +5,8 @@ router.get("/exercise", (req, res) => {
     res.sendFile(path.join(__dirname + "./../Views/exercise.html"));
 }) 
 
-router.post("/api/workout", ({ body }, res) => {
-    Workout.create(body)
-    .then(dbworkout => {
-        res.json(dbworkout);
-    })
-    .catch (err => {
-        res.status(400).json(err);
-    });
-});
 
-router.post("/api/workout/bulk", ({ body }, res) => {
-    Workout.insertMany(body)
-    .then(dbworkout => {
-        res.json(dbworkout);
-    })
-    .catch(err => {
-        res.status(400).json(err);
-    });
-});
-
-router.get("/api/workout", (req, res) => {
+router.get("/api/workouts", (req, res) => {
     Workout.find({})
     .then(dbworkout => {
         res.json(dbworkout);
@@ -34,5 +15,14 @@ router.get("/api/workout", (req, res) => {
         res.status(400).json(err);
     });
 });
+
+router.put("api/workout/:id", async (req, res) => {
+    const dbworkout = await Workout.findOneAndUpdate(
+        {_id: req.params.id },
+        req.body,
+        { new: true}
+    );
+    res.json(dbworkout);
+})
 
 module.exports = router;
