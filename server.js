@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const compression = require("compression")
+const compression = require("compression");
+const logger = require("morgan");
 
 const PORT = process.env.PORT || 4000;
 
@@ -8,6 +9,8 @@ const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(compression());
+app.use(logger("dev"))
 
 app.use(express.static("public"));
 
