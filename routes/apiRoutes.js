@@ -34,5 +34,22 @@ router.post("/api/workouts", (req, res) => {
         });
 });
 
+router.get("/api/workouts/range", (req, res) => {
+    Workout.find()
+    .then(dbworkout => {
+        res.json(dbworkout)
+    })
+    .catch(err => {
+        res.json(err)
+    });
+});
+
+router.post("/api/workouts/range", (req, res) => {
+    Workout.create({})
+    .then(data => res.json(data))
+    .catch(err => {
+        res.json(err)
+    })
+})
 
 module.exports = router;
