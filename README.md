@@ -1,4 +1,4 @@
-# fitness-tracker
+# Fitness-Tracker
 
 ![License](https://img.shields.io/github/license/tarmity/fitness-tracker)
 
